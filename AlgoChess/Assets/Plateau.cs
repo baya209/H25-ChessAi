@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Plateau 
 {
-    Piece[,] jeu = new Piece[8, 8];
-    
+
+    private int[,] tableau = new int[8, 8]; // -1 = noir /// 0 = vide /// 1= blanc
 
 
 }

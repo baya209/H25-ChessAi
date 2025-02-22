@@ -4,20 +4,20 @@ using UnityEngine.UIElements;
 
 public class Pion : Piece 
 {
-    public Pion(){
-        int valeur = 0 ;     
+    public Pion(int[,] tableau) : base(tableau)
+    {
     }
-    protected override bool deplacer(int cI, int cF, int lI, int lF){// cI colonne initiale, cF colonne finale, lI ligne initiale, lF ligne finale
-        if (cF == (cI + getCouleur()))
+
+    protected override bool deplacer(int c, int l){//  c colonne finale, l ligne finale
+
+        if (getTableau()[c][l] == getCouleur)
+
+        if (c == (getColonne() + getCouleur()))// Pion qui avance d'une case
         {
             return true;
         }
-        else if (cF == (cI + 2) && getCouleur() ==1 && lI == 1 ) { 
+        else if (c == (getColonne() + 2) && (getCouleur() ==1 && getLigne() == 1 || getCouleur() == -1 && getLigne() == 7)) {// Pion qui avance de deux cases 
+            return true;
         }
-        else if (cF == (cI -2) && getCouleur() == -1 && lI == 7)
-        {
-        }
-
-        return false;
     }
 }
