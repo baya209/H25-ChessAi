@@ -23,23 +23,22 @@ public class Partie
         }
 
 
+
         List<Piece> pieces = new List<Piece>();
         //Ajout pions 
         for (int i = 0; i < 8; i++) {
             
             Pion pion1 = new Pion(tableau, i, 1, 1);
             Pion pion3 = new Pion(tableau, i, 6, -1);
-            
             pieces.Add(pion1);
             pieces.Add(pion3);
-            
         }
         plateau = new Plateau(tableau,pieces);
     }
-    public bool jouerCoup(int li, int ci, int lf,int cf)
+    public bool jouerCoup(int li, int ci, int lf,int cf, int couleur)
     {
         evaluerDanger();
-        if (plateau.getTableau()[li,ci] != 0)
+        if (plateau.getTableau()[li,ci] == couleur)
         {
             Piece deplace = plateau.getPieces().Find(p => p.getLigne() == li && p.getColonne() == ci);
             if ((special(li, ci, lf, cf, deplace)))
@@ -55,8 +54,10 @@ public class Partie
                 {
                     plateau.getPieces().Remove(plateau.getPieces().Find(p => p.getLigne() == lf && p.getColonne() == cf));
                 }
-                plateau.getPieces().Remove(plateau.getPieces().Find(p => p.getLigne() == lf && p.getColonne() == cf));
-                
+                plateau.getTableau()[li,ci] = 0;
+                plateau.getTableau()[lf, cf] = deplace.getCouleur();
+
+
             }
             return true;
         }
@@ -87,7 +88,11 @@ public class Partie
     {
         if(piece.GetType() == typeof(Pion))
         {
-
+            if (piece.deplacer(lf,cf) && (cf == 7 || cf == 0)) {
+                plateau.getPieces().Add(new Tour(plateau.getTableau(), lf, cf, piece.getCouleur()));
+                plateau.getPieces().Remove(piece);
+                return true;
+            }
         } 
     }
 

@@ -15,10 +15,7 @@ public class Roi : Piece
                     return true;
                 }
             }
-            else if (isFixe() && c == getColonne() && Math.Abs(getLigne() - l) == 2)// Castling
-            {
-
-            }
+            
         }
         
         return false;
@@ -27,6 +24,6 @@ public class Roi : Piece
 
     public override bool[,] isDanger(bool[,] danger)
     {
-        throw new System.NotImplementedException();
+        
     }
 }

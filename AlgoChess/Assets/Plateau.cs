@@ -37,7 +37,7 @@ public class Plateau
         this.tableau = tableau;
     }
     public int[,] getTableauModulo() { return tableauModulo; }
-    public void setTableauModulo(in int[,] tableauModulo)
+    public void setTableauModulo( int[,] tableauModulo)
     {
         this.tableauModulo = tableauModulo;
     }
