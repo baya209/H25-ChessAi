@@ -35,4 +35,39 @@ public class Pion : Piece
 
         return false;
     }
+
+    public override bool[,] isDanger(bool[,] danger)
+    {
+        if (getCouleur() == 1)
+        {
+            if(getColonne() < 7)
+            {
+                if(getLigne() != 7)
+                {
+                    danger[getLigne() + 1, getColonne() + 1] = true;
+                }
+                if (getLigne() != 0) {
+                    danger[getLigne() - 1, getColonne() + 1] = true;
+                } 
+            }
+            
+        }
+        else if (getCouleur() == -1)
+        {
+            if (getColonne() > 0)
+            {
+                if (getLigne() != 7)
+                {
+                    danger[getLigne() + 1, getColonne() - 1] = true;
+                }
+                if (getLigne() != 0)
+                {
+                    danger[getLigne() - 1, getColonne() + 1] = true;
+                }
+            }
+
+        }
+        return danger;
+
+    }
 }

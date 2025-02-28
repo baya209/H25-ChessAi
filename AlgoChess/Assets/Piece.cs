@@ -3,9 +3,10 @@ public abstract class Piece
 {
     private int colonne; // exemple la reine blanche est a la position au depart (3,0)
     private int ligne;  
-    private int valeur;
+    private int valeur; //Valeur de NegaMax
     private int couleur; // -1 noir 1 blanc
     private int[,] tableau = new int[8, 8]; // -1 = noir /// 0 = vide /// 1= blanc
+    private bool fixe = true; // Piece a elle bouge: Pour Castling
     public Piece(int[,] tableau,int ligne, int colonne, int couleur)
     {
         this.ligne = ligne;
@@ -47,5 +48,10 @@ public abstract class Piece
     public int[,] getTableau() { 
     return tableau;
     }
+    public abstract bool[,] isDanger(bool[,]danger);
+    public void setFixe() {
+        fixe = false;
+    }
+    public bool isFixe() { return fixe; }
     
 }

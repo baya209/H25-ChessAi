@@ -4,10 +4,6 @@ using System.Collections.Generic;
 public class Partie 
 {
     private Plateau plateau;
-
-
-
-
     public void creerPartie()
     {
         int[,] tableau = new int[8, 8];
@@ -42,18 +38,58 @@ public class Partie
     }
     public bool jouerCoup(int li, int ci, int lf,int cf)
     {
+        evaluerDanger();
         if (plateau.getTableau()[li,ci] != 0)
         {
             Piece deplace = plateau.getPieces().Find(p => p.getLigne() == li && p.getColonne() == ci);
+            if ((special(li, ci, lf, cf, deplace)))
+            {
+                return true;
+            }
             if (deplace.deplacer(lf, cf))
             {
                 deplace.setLigne(lf);
                 deplace.setColonne(cf);
+                deplace.setFixe();
+                if(plateau.getPieces().Find(p => p.getLigne() == lf && p.getColonne() == cf).getCouleur() == deplace.getCouleur() * -1)
+                {
+                    plateau.getPieces().Remove(plateau.getPieces().Find(p => p.getLigne() == lf && p.getColonne() == cf));
+                }
                 plateau.getPieces().Remove(plateau.getPieces().Find(p => p.getLigne() == lf && p.getColonne() == cf));
-                return true;
+                
             }
+            return true;
         }
         return false;
     }
+    public void evaluerDanger()
+    {
+        bool[,] dangerNoir = new bool[8, 8];
+        bool[,] dangerBlanc = new bool[8, 8];
+        for (int i = plateau.getPieces().Count; i > 0; i--) {
+            if (plateau.getPieces()[i].getCouleur() == 1)
+            {
+                dangerBlanc = plateau.getPieces()[i].isDanger(dangerBlanc);
+            }
+            else
+            {
+                dangerNoir = plateau.getPieces()[i].isDanger(dangerNoir);
+            }
+        }
+        plateau.setDangerNoir(dangerNoir);
+        plateau.setDangerBlanc(dangerBlanc);
+    }
+    private bool castling(int li, int ci, int lf, int cf)
+    {
+        
+    }
+    private bool special(int li, int ci, int lf, int cf, Piece piece)
+    {
+        if(piece.GetType() == typeof(Pion))
+        {
+
+        } 
+    }
+
 
 }
