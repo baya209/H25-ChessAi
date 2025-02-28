@@ -1,20 +1,32 @@
-using System;
-using UnityEngine;
 
 public abstract class Piece 
 {
-    private int colonne; // exemple la reine est a la position au depart (0,3)
+    private int colonne; // exemple la reine blanche est a la position au depart (3,0)
     private int ligne;  
-    int valeur;
-    int couleur; // -1 noir 1 blanc
+    private int valeur; //Valeur de NegaMax
+    private int couleur; // -1 noir 1 blanc
+    private int[,] tableau = new int[8, 8]; // -1 = noir /// 0 = vide /// 1= blanc
+    private bool fixe = true; // Piece a elle bouge: Pour Castling
+    public Piece(int[,] tableau,int ligne, int colonne, int couleur)
+    {
+        this.ligne = ligne;
+        this.colonne = colonne;
+        this.couleur = couleur;
+        this.tableau = tableau;
+    }
 
-    protected abstract bool deplacer(int cI, int cF, int lI, int lF);
-    public  int getColonne() {
+    protected Piece(int[,] tableau)
+    {
+        this.tableau = tableau;
+    }
+
+    public abstract bool deplacer(int l, int c);
+    public int getColonne() {
         return colonne;
     }
     public int getLigne()
     {
-        return colonne;
+        return ligne;
     }
     public int getCouleur()
     {
@@ -22,5 +34,24 @@ public abstract class Piece
     }
     public void setColonne( int colonne) { this.colonne = colonne; }
     public void setLigne(int ligne) { this.ligne = ligne; }
+    public int getValeur() {
+        return valeur;  
+    }
+    public void setValeur(int valeur)
+    {
+        this.valeur = valeur;    
+    }
+    public void setTableau(int[,] tableau)
+    {
+        this.tableau = tableau;
+    }
+    public int[,] getTableau() { 
+    return tableau;
+    }
+    public abstract bool[,] isDanger(bool[,]danger);
+    public void setFixe() {
+        fixe = false;
+    }
+    public bool isFixe() { return fixe; }
     
 }
