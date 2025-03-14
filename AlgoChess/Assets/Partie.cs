@@ -89,7 +89,7 @@ public class Partie
         if(piece.GetType() == typeof(Pion))
         {
             if (piece.deplacer(lf,cf) && (cf == 7 || cf == 0)) {
-                plateau.getPieces().Add(new Tour(plateau.getTableau(), lf, cf, piece.getCouleur()));
+                plateau.getPieces().Add(new Tour(plateau.getTableau(), lf, cf, piece.getCouleur()));//
                 plateau.getPieces().Remove(piece);
                 return true;
             }
