@@ -21,9 +21,6 @@ public class Partie
             tableau[6,i] = -1;
             tableau[7, i] = -1;
         }
-
-
-
         List<Piece> pieces = new List<Piece>();
         //Ajout pions 
         for (int i = 0; i < 8; i++) {
@@ -32,12 +29,32 @@ public class Partie
             Pion pion3 = new Pion(tableau, i, 6, -1);
             pieces.Add(pion1);
             pieces.Add(pion3);
+            
         }
+        Roi roiNoir = new Roi(tableau,7,4,-1);
+        Roi roiBlanc = new Roi(tableau, 0, 4, 1);
+        pieces.Add(roiBlanc);
+        pieces.Add(roiNoir);
         plateau = new Plateau(tableau,pieces);
     }
+    
     public bool jouerCoup(int li, int ci, int lf,int cf, int couleur)
     {
         evaluerDanger();
+        foreach (var piece in plateau.getPieces())
+        {
+            if (piece is Roi)
+            {
+                if (piece.getCouleur() == 1)
+                {
+                    piece.setEchec(plateau.getDangerBlanc());
+                }
+                else
+                {
+                    piece.setEchec(plateau.getDangerNoir());
+                }
+            }
+        }
         if (plateau.getTableau()[li,ci] == couleur)
         {
             Piece deplace = plateau.getPieces().Find(p => p.getLigne() == li && p.getColonne() == ci);
@@ -68,7 +85,7 @@ public class Partie
         bool[,] dangerNoir = new bool[8, 8];
         bool[,] dangerBlanc = new bool[8, 8];
         for (int i = plateau.getPieces().Count; i > 0; i--) {
-            if (plateau.getPieces()[i].getCouleur() == 1)
+            if (plateau.getPieces()[i].getCouleur() == -1)
             {
                 dangerBlanc = plateau.getPieces()[i].isDanger(dangerBlanc);
             }
@@ -82,7 +99,7 @@ public class Partie
     }
     private bool castling(int li, int ci, int lf, int cf)
     {
-        
+        return false;
     }
     private bool special(int li, int ci, int lf, int cf, Piece piece)
     {
@@ -94,7 +111,6 @@ public class Partie
                 return true;
             }
         } 
+        return false;
     }
-
-
 }

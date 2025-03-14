@@ -1,8 +1,10 @@
 using System;
 public class Roi : Piece
 {
+    
     public Roi(int[,] tableau, int ligne, int colonne, int couleur) : base(tableau, ligne, colonne, couleur)
     {
+        
     }
     public override bool deplacer(int l, int c)
     {
@@ -10,9 +12,12 @@ public class Roi : Piece
         {
             if (getCouleur() != getTableau()[l, c] && (l != getLigne() || c != getColonne()))
             {
-                if (Math.Abs(l - getLigne()) <= 1 && Math.Abs(c - getColonne()) <= 1)
+                if (!isEchec()[l, c])
                 {
-                    return true;
+                    if (Math.Abs(l - getLigne()) <= 1 && Math.Abs(c - getColonne()) <= 1)
+                    {
+                        return true;
+                    }
                 }
             }
             
@@ -21,9 +26,43 @@ public class Roi : Piece
         return false;
 
     }
+    
 
     public override bool[,] isDanger(bool[,] danger)
     {
-        
+        if (getLigne() > 0)
+        {
+            if (getColonne() > 0)
+            {
+                danger[getLigne() - 1, getColonne() - 1] = true;
+            }
+            if (getColonne() < 8)
+            {
+                danger[getLigne() - 1, getColonne() + 1] = true;
+            }
+            danger[getLigne() - 1, getColonne()] = true;
+        }
+        if (getLigne() < 8)
+        {
+            if (getColonne() > 0)
+            {
+                danger[getLigne() +1, getColonne() - 1] = true;
+            }
+            if (getColonne() < 8)
+            {
+                danger[getLigne() + 1, getColonne() + 1] = true;
+            }
+            danger[getLigne() + 1, getColonne()] = true;
+        }
+        if(getColonne() < 8)
+        {
+            danger[getLigne(), getColonne()+1] = true;
+        }
+        if (getColonne() > 0)
+        {
+            danger[getLigne(), getColonne() -1] = true;
+        }
+
+        return danger;
     }
 }

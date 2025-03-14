@@ -66,56 +66,38 @@ public class Tour : Piece
 
     public override bool[,] isDanger(bool[,] danger)
     {
-        for (int i = getColonne(); i < 8 - getColonne(); i++) {
-            if(getTableau()[i, getLigne()] != 0)
-            {
-                if(getCouleur() == -1 *getTableau()[i, getLigne()])
-                {
-                    danger[i, getLigne()] = true;
-
-                }
-                break;
-            }
+        for (int i = getColonne()+1; i < 8 - getColonne(); i++) {
             danger[i, getLigne()] = true;
-        }
-        for (int i = getColonne()-1; i >= 0; i--)
-        {
             if (getTableau()[i, getLigne()] != 0)
             {
-                if (getCouleur() == -1 * getTableau()[i, getLigne()])
-                {
-                    danger[i, getLigne()] = true;
-                }
                 break;
             }
             danger[i, getLigne()] = true;
         }
-        for (int i = getLigne(); i < 8 - getLigne(); i++)
+        for (int i = getColonne()-1; i >= getColonne()-1; i--)
         {
-            if (getTableau()[getColonne(), i] != 0)
+            danger[i, getLigne()] = true;
+            if (getTableau()[i, getLigne()] != 0)
             {
-                if (getCouleur() == -1 * getTableau()[getColonne(), i])
-                {
-                    danger[getColonne(), i] = true;
-
-                }
                 break;
             }
-            danger[getColonne(), i] = true;
         }
-        for (int i = getLigne() - 1; i >= 0; i--)
+        for (int i = getLigne()+1; i < 8 - getLigne(); i++)
         {
+            danger[getColonne(), i] = true;
             if (getTableau()[getColonne(), i] != 0)
-            {
-                if (getCouleur() == -1 * getTableau()[getColonne(), i])
-                {
-                    danger[getColonne(), i] = true;
-                }
+            {   
                 break;
             }
-            danger[getColonne(), i] = true;
         }
-
+        for (int i = getLigne() - 1; i >= getLigne()-1; i--)
+        {
+            danger[getColonne(), i] = true;
+            if (getTableau()[getColonne(), i] != 0)
+            {
+                break;
+            }
+        }
         return danger;
     }
 }
