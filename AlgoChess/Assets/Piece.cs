@@ -2,7 +2,8 @@
 public abstract class Piece 
 {
     private int colonne; // exemple la reine blanche est a la position au depart (3,0)
-    private int ligne;  
+    private int ligne;
+    private bool[,] echec;
     private int valeur; //Valeur de NegaMax
     private int couleur; // -1 noir 1 blanc
     private int[,] tableau = new int[8, 8]; // -1 = noir /// 0 = vide /// 1= blanc
@@ -53,5 +54,13 @@ public abstract class Piece
         fixe = false;
     }
     public bool isFixe() { return fixe; }
-    
+    public void setEchec(bool[,] echec)
+    {
+        this.echec = echec;
+    }
+    public bool[,] isEchec()
+    {
+        return echec;
+    }
+
 }
