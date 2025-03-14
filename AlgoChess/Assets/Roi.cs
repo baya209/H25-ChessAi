@@ -1,8 +1,10 @@
 using System;
 public class Roi : Piece
 {
-    public Roi(int[,] tableau, int ligne, int colonne, int couleur) : base(tableau, ligne, colonne, couleur)
+    bool[,] echec;
+    public Roi(int[,] tableau, int ligne, int colonne, int couleur, bool[,] echec) : base(tableau, ligne, colonne, couleur)
     {
+        this.echec = echec;
     }
     public override bool deplacer(int l, int c)
     {
@@ -10,11 +12,15 @@ public class Roi : Piece
         {
             if (getCouleur() != getTableau()[l, c] && (l != getLigne() || c != getColonne()))
             {
-                if (Math.Abs(l - getLigne()) <= 1 && Math.Abs(c - getColonne()) <= 1)
-                {
-                    return true;
+                if (!echec[l,c]) {
+                    if (Math.Abs(l - getLigne()) <= 1 && Math.Abs(c - getColonne()) <= 1)
+                    {
+                        return true;
+                    }
                 }
+                
             }
+            
             
         }
         

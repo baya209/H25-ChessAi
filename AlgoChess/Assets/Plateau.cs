@@ -29,7 +29,12 @@ public class Plateau
     public Plateau(int[,] tableau, List<Piece> pieces)
     {
         this.pieces = pieces;
-        this.tableau = tableau; 
+        this.tableau = tableau;
+        /*int a = 0b01010101;
+        int mask = 0b10000000;
+        int res = a & mask;
+        a |= mask >> 1;*/
+
     }
     public int[,] getTableau() {  return tableau; }
     public void setTableau(in int[,] tableau)

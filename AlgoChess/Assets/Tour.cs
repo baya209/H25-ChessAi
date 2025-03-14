@@ -67,53 +67,52 @@ public class Tour : Piece
     public override bool[,] isDanger(bool[,] danger)
     {
         for (int i = getColonne(); i < 8 - getColonne(); i++) {
-            if(getTableau()[i, getLigne()] != 0)
+            danger[i, getLigne()] = true;
+            if (getTableau()[i, getLigne()] != 0)
             {
-                if(getCouleur() == -1 *getTableau()[i, getLigne()])
-                {
-                    danger[i, getLigne()] = true;
-
-                }
                 break;
             }
-            danger[i, getLigne()] = true;
+            
         }
         for (int i = getColonne()-1; i >= 0; i--)
         {
             if (getTableau()[i, getLigne()] != 0)
             {
+                danger[i, getLigne()] = true;
                 if (getCouleur() == -1 * getTableau()[i, getLigne()])
                 {
-                    danger[i, getLigne()] = true;
+                    break;
                 }
-                break;
+                
             }
-            danger[i, getLigne()] = true;
+            
         }
         for (int i = getLigne(); i < 8 - getLigne(); i++)
         {
             if (getTableau()[getColonne(), i] != 0)
             {
+                danger[getColonne(), i] = true;
                 if (getCouleur() == -1 * getTableau()[getColonne(), i])
                 {
-                    danger[getColonne(), i] = true;
+                    break;
 
                 }
-                break;
+                
             }
-            danger[getColonne(), i] = true;
+            
         }
         for (int i = getLigne() - 1; i >= 0; i--)
         {
             if (getTableau()[getColonne(), i] != 0)
             {
+                danger[getColonne(), i] = true;
                 if (getCouleur() == -1 * getTableau()[getColonne(), i])
                 {
-                    danger[getColonne(), i] = true;
+                    break;
                 }
-                break;
+                
             }
-            danger[getColonne(), i] = true;
+            
         }
 
         return danger;
