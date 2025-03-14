@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8724c9ea-3187-4b55-9c14-390c8332d1eb" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/AlgoChess/Assets/Fou.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/baya/Downloads/projet2-1/H25-ChessAi/AlgoChess/Assets/Fou.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/baya/Downloads/projet2-1/H25-ChessAi/AlgoChess/Assets/Fou.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/baya/Downloads/projet2-1/H25-ChessAi/AlgoChess/Assets/Fou.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/baya/Downloads/projet2-1/H25-ChessAi/AlgoChess/Assets/Fou.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/baya/Downloads/projet2-1/H25-ChessAi/AlgoChess/Assets/Fou.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/baya/Downloads/projet2-1/H25-ChessAi/AlgoChess/Assets/Fou.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/baya/Downloads/projet2-1/H25-ChessAi/AlgoChess/Assets/Fou.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AlgoChess/Assets/NegaMax.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AlgoChess/Assets/Partie.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AlgoChess/Assets/Piece.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AlgoChess/Assets/Pion.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AlgoChess/Assets/Plateau.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AlgoChess/Assets/Roi.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AlgoChess/Assets/Tour.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+</project>
