@@ -22,11 +22,9 @@ public class Fou : Piece
         if (Math.abs(diffColonne) != Math.abs(diffLigne))
         {
             return false;
-            
         }
-        else
-        {
-            // verifier s'il va à gauche ou à droite
+        
+        // verifier s'il va à gauche ou à droite
             if (l > ligneDepart)
             {
                 return dirLigne = 1;
@@ -56,9 +54,9 @@ public class Fou : Piece
                 if (getTableau()[y, x] != 0)
                 {
                     return false;
-                   x += dirColonne;
-                   y += dirLigne;
                 }
+                x += dirColonne;
+                y += dirLigne;
             }
            
             
@@ -67,12 +65,6 @@ public class Fou : Piece
             {
                 return true;
             }
-
-
-
-        }
-
-
         // vérifier si le déplacement se fait en diagonale gauche et droite haut bas
         // vérifier si le chemain est libre 
 
