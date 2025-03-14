@@ -12,24 +12,76 @@ public class NewMonoBehaviourScript
     * roi = 10 000
     * pour piece noir -> mettre valeur en negatif
     * */
-/*
- *  public int EvaluerEchiquier(Plateau plateau, Couleur joueurActuel)
-{
-    int score = 0;
-    //score materiel
-    foreach(Piece piece in plateau.pieces)//parcourir le tableau de piece
+    /*
+     *  public int EvaluerEchiquier(Plateau plateau, Couleur joueurActuel)
     {
-        int valeur = GetValeurPieces(piece); 
-        // si couleur cest la meme que le joueur actuel alors on ajoute au score 
+        int score = 0;
+        //score materiel
+        foreach(Piece piece in plateau.pieces)//parcourir le tableau de piece
+        {
+            int valeur = GetValeurPieces(piece); 
+            // si couleur cest la meme que le joueur actuel alors on ajoute au score 
 
-        score += (piece.getCouleur == joueurActuel) ? valeur : -valeur; 
+            score += (piece.getCouleur == joueurActuel) ? valeur : -valeur; 
+
+        }
+        score += EvaluerControleCentre(Plateau plateau,joueurActuel);
+
+
+        return score;
+    }
+
+
+    */
+
+
+    /*
+     *   //tableau
+    int[,] bonusCentre = {
+    { 0, 0, 1, 2, 2, 1, 0, 0 },
+    { 0, 1, 2, 3, 3, 2, 1, 0 },
+    { 1, 2, 3, 4, 4, 3, 2, 1 },
+    { 2, 3, 4, 5, 5, 4, 3, 2 },
+    { 2, 3, 4, 5, 5, 4, 3, 2 },
+    { 1, 2, 3, 4, 4, 3, 2, 1 },
+    { 0, 1, 2, 3, 3, 2, 1, 0 },
+    { 0, 0, 1, 2, 2, 1, 0, 0 }
+    };
+    */
+    public int EvaluerControleCentre(Plateau plateau, Couleur joueurActuel)
+    {
+        int score = 0;
+        foreach (Piece piece in plateau.pieces)
+        {
+            int bonus = bonusCentre[piece.Position.x, piece.Position.y];
+            int valeurPiece = GetValeurPieces(piece);
+
+
+            //si la piece est un roi on enleve le bonus 
+            if (piece is Roi)
+            {
+
+                //TODO: ajout de la variante dependemment de la phase de la partie
+                //fin de phase le bonus reste positif
+                bonus = -bonus;
+            }
+
+            // Appliquer le bonus en fonction de la piece
+            //ne pas etre applique aux pions
+            score += (piece.getCouleur == joueurActuel) ? bonus * (valeurPiece > 100 ? 1 : 0) : -bonus * (valeurPiece > 100 ? 1 : 0);
+
+        }
+
+        return score;
 
     }
-    score += EvaluerControleCentre(Plateau plateau,joueurActuel);
 
 
-    return score;
+
+
+
+
 }
-*/
 
-}
+
+
