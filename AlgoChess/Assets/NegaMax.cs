@@ -2,6 +2,15 @@ using UnityEngine;
 
 public class NewMonoBehaviourScript
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
+    /* 
+    * place vide  = 0
+    * pions = 100
+    * cavalier = 300
+    * fou = 350
+    * tour = 500
+    * dame = 1000
+    * roi = 10 000
+    * pour piece noir -> mettre valeur en negatif
+    * */
+
 }
