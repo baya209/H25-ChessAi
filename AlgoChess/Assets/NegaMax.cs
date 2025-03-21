@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NewMonoBehaviourScript
@@ -12,8 +13,68 @@ public class NewMonoBehaviourScript
     * roi = 10 000
     * pour piece noir -> mettre valeur en negatif
     * */
-    /*
-     *  public int EvaluerEchiquier(Plateau plateau, Couleur joueurActuel)
+
+
+    public int profondeurMax = 3; //sera changer par une constante
+    public int valeurMax = 1000000;
+    public int NegaMax(Plateau plateau, int profondeur, int alpha, int beta, Couleur joueurActuel)
+    {
+
+        if (profondeur == 0 || plateau.EstFinDePartie())
+        {
+            return EvaluerEchiquier(plateau, joueurActuel);
+        }
+
+
+        int meilleurScore = -valeurMax;
+        //logique du plateau?
+        List<Coup> coupsPossibles = GenererTousLesCoups(plateau, joueurActuel);
+        foreach (Coup coup in coupsPossibles)
+        {
+            // Jouer le coup
+            JouerCoup(plateau, coup);
+
+            // Appel recursif en inversant le joueur
+            int score = -NegaMax(plateau, profondeur - 1, -beta, -alpha, InverserCouleur(joueurActuel));
+
+            // Annuler le coup pour revenir à l'état précédent
+            AnnulerCoup(plateau, coup);
+
+            meilleurScore = Mathf.Max(meilleurScore, score);
+
+            //TODO: Appliquer l'elagage alpha-bêta
+
+        }
+        return meilleurScore;
+
+    }
+    public Coup TrouverMeilleurCoup(Plateau plateau, Couleur joueurActuel)
+    {
+        int meilleurScore = -valeurMax;
+        Coup meilleurCoup = null;
+        List<Coup> coupsPossibles = GenererTousLesCoups(plateau, joueurActuel);
+
+        foreach (Coup coup in coupsPossibles)
+        {
+            JouerCoup(plateau, coup);
+            int score = -NegaMax(plateau, profondeurMax - 1, -valeurMax, valeurMax, InverserCouleur(joueurActuel));
+            AnnulerCoup(plateau, coup);
+
+            //comparer les score pour etablir le meilleur
+            if (score > meilleurScore)
+            {
+                meilleurScore = score;
+                meilleurCoup = coup;
+            }
+        }
+        return meilleurCoup;
+    }
+    //TODO: methode inversion de couleur joueur
+    //TODO: generer tout les coups
+
+
+
+    public int EvaluerEchiquier(Plateau plateau, Couleur joueurActuel)
     {
         int score = 0;
         //score materiel
@@ -32,7 +93,7 @@ public class NewMonoBehaviourScript
     }
 
 
-    */
+    
 
 
     /*
