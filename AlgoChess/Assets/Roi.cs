@@ -36,25 +36,26 @@ public class Roi : Piece
             {
                 danger[getLigne() - 1, getColonne() - 1] = true;
             }
-            if (getColonne() < 8)
+            if (getColonne() < 6)
             {
                 danger[getLigne() - 1, getColonne() + 1] = true;
             }
             danger[getLigne() - 1, getColonne()] = true;
         }
-        if (getLigne() < 8)
+        if (getLigne() < 6)
         {
             if (getColonne() > 0)
             {
-                danger[getLigne() +1, getColonne() - 1] = true;
+                //danger[getLigne() +1, getColonne() - 1] = true;
             }
-            if (getColonne() < 8)
+            if (getColonne() < 6)
             {
+                
                 danger[getLigne() + 1, getColonne() + 1] = true;
             }
             danger[getLigne() + 1, getColonne()] = true;
         }
-        if(getColonne() < 8)
+        if(getColonne() < 6)
         {
             danger[getLigne(), getColonne()+1] = true;
         }

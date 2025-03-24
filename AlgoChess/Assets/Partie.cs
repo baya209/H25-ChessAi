@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 public class Partie 
 {
+    public Partie()
+    {
+        creerPartie();
+    }
     private Plateau plateau;
     public void creerPartie()
     {
@@ -84,7 +88,7 @@ public class Partie
     {
         bool[,] dangerNoir = new bool[8, 8];
         bool[,] dangerBlanc = new bool[8, 8];
-        for (int i = plateau.getPieces().Count; i > 0; i--) {
+        for (int i = 0;  i < plateau.getPieces().Count; i++) {
             if (plateau.getPieces()[i].getCouleur() == -1)
             {
                 dangerBlanc = plateau.getPieces()[i].isDanger(dangerBlanc);
