@@ -1,9 +1,12 @@
 
+using UnityEngine;
+
 public class Tour : Piece
 {
     
     public Tour(int[,] tableau, int ligne, int colonne, int couleur) : base(tableau, ligne, colonne, couleur) 
     {
+        setSymbole('t');
     }
     public override bool deplacer(int l, int c)
     {
@@ -17,6 +20,7 @@ public class Tour : Piece
                     {
                         if (getTableau()[i, l] != 0)
                         {
+                            Debug.LogError("Piece sur la trajectoire");
                             return false;
                         }
                     }
@@ -28,6 +32,7 @@ public class Tour : Piece
                     {
                         if (getTableau()[i, l] != 0)
                         {
+                            Debug.LogError("Piece sur la trajectoire");
                             return false;
                         }
                     }
@@ -35,7 +40,7 @@ public class Tour : Piece
                 }
 
             }
-            if (l != getLigne() && c == getColonne())
+            else if (l != getLigne() && c == getColonne())
             {
                 if (l > getLigne())
                 {
@@ -43,6 +48,7 @@ public class Tour : Piece
                     {
                         if (getTableau()[c, i] != 0)
                         {
+                            Debug.LogError("Piece sur la trajectoire");
                             return false;
                         }
                     }
@@ -54,12 +60,21 @@ public class Tour : Piece
                     {
                         if (getTableau()[c, i] != 0)
                         {
+                            Debug.LogError("Piece sur la trajectoire");
                             return false;
                         }
                     }
                     return true;
                 }
             }
+            else
+            {
+                Debug.LogError("Trajectoire non lineaire");
+            }
+        }
+        else
+        {
+            Debug.LogError("Position occupe"); 
         }
         return false;
     }

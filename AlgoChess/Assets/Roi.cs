@@ -1,10 +1,11 @@
 using System;
+using UnityEngine;
 public class Roi : Piece
 {
     
     public Roi(int[,] tableau, int ligne, int colonne, int couleur) : base(tableau, ligne, colonne, couleur)
     {
-        
+        setSymbole('r');
     }
     public override bool deplacer(int l, int c)
     {
@@ -18,9 +19,21 @@ public class Roi : Piece
                     {
                         return true;
                     }
+                    else
+                    {
+                        Debug.LogError("Plus de d'une case");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Le roi est en echec");
                 }
             }
-            
+            else
+            {
+                Debug.LogError("Position occuppe");
+            }
+    
         }
         
         return false;

@@ -8,6 +8,7 @@ public abstract class Piece
     private int couleur; // -1 noir 1 blanc
     private int[,] tableau = new int[8, 8]; // -1 = noir /// 0 = vide /// 1= blanc
     private bool fixe = true; // Piece a elle bouge: Pour Castling
+    private char symbole;
     public Piece(int[,] tableau,int ligne, int colonne, int couleur)
     {
         this.ligne = ligne;
@@ -61,6 +62,14 @@ public abstract class Piece
     public bool[,] isEchec()
     {
         return echec;
+    }
+    public char getSymbole()
+    {
+        return symbole;
+    }
+    public void setSymbole(char symbole)
+    {
+        this.symbole = symbole;
     }
 
 }

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using UnityEngine;
+
 
 
 public class Partie 
@@ -14,16 +16,16 @@ public class Partie
         //Creation du plateau
         for (int i = 0; i < 8; i++)
         {
-            tableau[0,i] = 1;
-            tableau[1,i] = 1;
+            tableau[i,0] = 1;
+            tableau[i,1] = 1;
 
-            tableau[2, i] = 0;
-            tableau[3, i] = 0;
-            tableau[4, i] = 0;
-            tableau[5, i] = 0;
+            tableau[i, 2] = 0;
+            tableau[i, 3] = 0;
+            tableau[i, 4] = 0;
+            tableau[i, 5] = 0;
 
-            tableau[6,i] = -1;
-            tableau[7, i] = -1;
+            tableau[i,6] = -1;
+            tableau[i, 7] = -1;
         }
         List<Piece> pieces = new List<Piece>();
         //Ajout pions 
@@ -36,7 +38,7 @@ public class Partie
             
         }
         Roi roiNoir = new Roi(tableau,7,4,-1);
-        Roi roiBlanc = new Roi(tableau, 0, 4, 1);
+        Roi roiBlanc = new Roi(tableau, 4, 0, 1);
         pieces.Add(roiBlanc);
         pieces.Add(roiNoir);
         plateau = new Plateau(tableau,pieces);
@@ -44,6 +46,7 @@ public class Partie
     
     public bool jouerCoup(int li, int ci, int lf,int cf, int couleur)
     {
+        
         evaluerDanger();
         foreach (var piece in plateau.getPieces())
         {
@@ -71,16 +74,21 @@ public class Partie
                 deplace.setLigne(lf);
                 deplace.setColonne(cf);
                 deplace.setFixe();
-                if(plateau.getPieces().Find(p => p.getLigne() == lf && p.getColonne() == cf).getCouleur() == deplace.getCouleur() * -1)
+                if (plateau.getPieces().Find(p => p.getLigne() == lf && p.getColonne() == cf).getCouleur() == deplace.getCouleur() * -1)
                 {
                     plateau.getPieces().Remove(plateau.getPieces().Find(p => p.getLigne() == lf && p.getColonne() == cf));
                 }
-                plateau.getTableau()[li,ci] = 0;
+                plateau.getTableau()[li, ci] = 0;
                 plateau.getTableau()[lf, cf] = deplace.getCouleur();
 
 
             }
-            return true;
+            
+            return false;
+        }
+        else
+        {
+
         }
         return false;
     }
@@ -116,5 +124,29 @@ public class Partie
             }
         } 
         return false;
+    }
+
+    public void afficher()
+    {
+        string[,] affichage = new string[8,8];
+        for (int i = 0; i < plateau.getTableau().GetLength(0); i++)
+        {
+            for (int j = 0; j < plateau.getTableau().GetLength(1); j++)
+            {
+                affichage[i, j] = plateau.getTableau()[i, j].ToString();
+            }
+        }
+        foreach (var piece in plateau.getPieces()) {
+            affichage[piece.getLigne(), piece.getColonne()] += piece.getSymbole();
+        }
+        string final = "";
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                final += affichage[j,i]+ "/";
+            }
+            final += "\n";
+        }
+        Debug.Log(final);
+        
     }
 }
